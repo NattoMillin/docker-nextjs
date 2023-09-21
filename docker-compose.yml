@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  dev:
+    build: 
+      context: .
+      target: dev
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+      
+      - type: volume
+        source: node_modules
+        target: /src/node_modules
+
+    command: ["npm","run","dev"]
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+
+volumes:
+  node_modules:
